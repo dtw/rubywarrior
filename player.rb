@@ -5,12 +5,17 @@ class Player
     	unless warrior.health < 20 then
 				warrior.walk!
 			else
-				warrior.rest!
+    		if warrior.health < @health then
+					warrior.walk!
+				else
+					warrior.rest!
+				end
 			end
 		else
 	    if warrior.feel.enemy? then
 				warrior.attack!
  	    end
 		end
+		@health = warrior.health
   end
 end
