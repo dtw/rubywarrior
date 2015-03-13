@@ -19,7 +19,7 @@ class Player
     @health = warrior.health
     # test if your back is to the wall
     if @advance != true then
-		  @advance = warrior.feel(:backward).wall?
-		end
+      @advance = warrior.feel(:backward).wall?
+    end
   end
 end
