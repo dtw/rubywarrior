@@ -1,7 +1,9 @@
 class Player
   def play_turn(warrior)
+    if warrior.feel.wall? then
+      warrior.pivot!
     # have we reached the back wall yet?
-    if @advance != true then
+    elsif @advance != true then
       # is there a space behind?
       if warrior.feel(:backward).empty? then
         warrior.walk!:backward
