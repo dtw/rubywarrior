@@ -11,11 +11,22 @@ class Player
       end
     # is there a space in front?
     elsif warrior.feel.empty? then
-      # am I hurt AND not taking damage?
-      if warrior.health < 20 and warrior.health >= @health then
-        warrior.rest!
+      # am I taking damage?
+      unless warrior.health < @health then
+        # am I at full health?
+        if warrior.health < 20 then
+          warrior.rest!
+        else
+          warrior.walk!
+        end
       else
-        warrior.walk!
+        # taking damage but healthy enough to charge
+        if warrior.health > 12 then
+          warrior.walk!
+        # taking damage and need to rest
+        else
+          warrior.walk!:backward
+        end
       end
     # is there a captive in front?
     elsif warrior.feel.captive? then
