@@ -1,7 +1,16 @@
 class Player
   def play_turn(warrior)
+    # have we reached the back wall yet?
+    if @advance != true then
+      # is there a space behind?
+      if warrior.feel(:backward).empty? then
+        warrior.walk!:backward
+      # is there a captive behind?
+      elsif warrior.feel(:backward).captive? then
+        warrior.rescue!:backward
+      end
     # is there a space in front?
-    if warrior.feel.empty? then
+    elsif warrior.feel.empty? then
       # am I hurt AND not taking damage?
       if warrior.health < 20 and warrior.health >= @health then
         warrior.rest!
